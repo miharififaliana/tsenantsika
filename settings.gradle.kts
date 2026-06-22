@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Tsenantsika"
 include(":app")
+include(":core")

@@ -31,49 +31,63 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
         // Activation du desugaring pour Java 8+ (Stream, Optional, etc.)
         isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"   // Cohérent avec compileOptions
+        jvmTarget = "11"   // Cohérent avec compileOptions
     }
 
     buildFeatures {
         compose = true
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14" // À adapter selon ta version de Kotlin/Compose
-    }
 }
 
 dependencies {
-    // Desugaring Java 8+
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    // --- NOUVEAU : Liaison avec vos modules internes ---
+    implementation(project(":core"))
 
-    // Core & Lifecycle
+    // --- NOUVEAU : Architecture & Injection de dépendances ---
+    implementation(libs.koin.android)
+    implementation(libs.timber) // Logs
+
+    // --- NOUVEAU : Réseau (Ktor Client & Server) ---
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.server.core)
+    implementation(libs.ktor.server.cio)
+
+    // --- NOUVEAU : Base de données locale (Room) ---
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+
+    // --- Desugaring Java 8+ ---
+    // Optimisation : Utilisation de votre variable libs.desugar.jdk existante
+    coreLibraryDesugaring(libs.desugar.jdk)
+
+    // --- Core & Lifecycle ---
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
-    // Compose
+    // --- Compose ---
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
 
-    // Tests
+    // --- Tests ---
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
-    // Debug
+    // --- Debug ---
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
