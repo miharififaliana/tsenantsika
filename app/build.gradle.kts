@@ -62,6 +62,8 @@ dependencies {
 
     // --- NOUVEAU : Base de données locale (Room) ---
     implementation(libs.room.runtime)
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.junit.ktx)
     kapt(libs.room.compiler)
 
     // --- Desugaring Java 8+ ---
@@ -90,4 +92,15 @@ dependencies {
     // --- Debug ---
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    testImplementation(kotlin("test"))
+
+    // Coroutines Test
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+
+    // Room Testing
+    testImplementation("androidx.room:room-testing:2.6.1")
+    androidTestImplementation("androidx.room:room-testing:2.6.1")
+
+    implementation("androidx.room:room-ktx:2.6.1")
 }
