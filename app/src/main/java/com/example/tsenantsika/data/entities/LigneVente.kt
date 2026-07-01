@@ -28,9 +28,9 @@ import androidx.room.PrimaryKey
 )
 data class LigneVente(
     @PrimaryKey(autoGenerate = true)
-    val idLigne: Long = 0,
+    val idLigne: Long = 0L,
 
-    val venteId: Long,
+    var venteId: Long = 0L,
 
     val categorieId: Long,
 
