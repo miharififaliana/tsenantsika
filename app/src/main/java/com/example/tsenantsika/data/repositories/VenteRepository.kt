@@ -21,4 +21,8 @@ class VenteRepository(database: BoutiqueDatabase) : BaseRepository(database) {
     suspend fun getChiffreAffairesJournee(journeeId: Long): Long? = safeCall {
         venteDao.getChiffreAffairesJournee(journeeId)
     }
+
+    suspend fun getCommissionBruteVendeur(journeeId: Long, vendeurId: Long): Long? = safeCall {
+        venteDao.getCommissionBruteVendeur(journeeId, vendeurId)
+    }
 }

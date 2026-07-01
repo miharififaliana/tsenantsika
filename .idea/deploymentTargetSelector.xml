@@ -5,16 +5,19 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="testVenteCompleteAvecLignesEtStats()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="testVenteCompleteAvecLignesEtStats() (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="FullDaoTest">
+      <SelectionState runConfigName="BoutiqueDatabaseTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="testCreateVenteAvecLignesEtStats()">
+      <SelectionState runConfigName="testGestionUtilisateursEtRoles()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="testCycleJourneeComplete()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="testCalculsCommissionsEtHistorique()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
