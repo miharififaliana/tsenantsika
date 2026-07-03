@@ -15,4 +15,7 @@ interface DepenseBoutiqueDao {
 
     @Query("SELECT SUM(montant) FROM depenses_boutique WHERE journeeId = :journeeId")
     suspend fun getTotalDepenses(journeeId: Long): Long?
+
+    @Query("SELECT SUM(montant) FROM depenses_boutique WHERE journeeId = :journeeId")
+    fun observeTotalDepenses(journeeId: Long): Flow<Long?>
 }

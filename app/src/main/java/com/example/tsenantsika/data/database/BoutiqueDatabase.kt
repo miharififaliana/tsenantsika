@@ -29,7 +29,7 @@ import com.example.tsenantsika.data.dao.LigneVenteDao
         DepenseBoutique::class,
         AuditLog::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 @TypeConverters(

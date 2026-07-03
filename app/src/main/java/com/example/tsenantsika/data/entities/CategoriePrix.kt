@@ -4,14 +4,13 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.time.Instant
+import kotlinx.serialization.Serializable
 
-/**
- * Entité Catégorie de Prix (4 catégories initiales + admin).
- */
 @Entity(
     tableName = "categories_prix",
     indices = [Index(value = ["libelle"], unique = true)]
 )
+@Serializable
 data class CategoriePrix(
     @PrimaryKey(autoGenerate = true)
     val idCategorie: Long = 0,
@@ -22,5 +21,6 @@ data class CategoriePrix(
 
     val actif: Boolean = true,
 
+    @Serializable(with = InstantAsLongSerializer::class)
     val dateCreation: Instant = Instant.now()
 )

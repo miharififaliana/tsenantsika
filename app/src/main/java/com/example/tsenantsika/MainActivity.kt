@@ -4,13 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.tsenantsika.ui.common.rememberBoutiqueSnackbarHostState
+import com.example.tsenantsika.ui.common.BoutiqueSnackbarHost
+import com.example.tsenantsika.ui.navigation.BoutiqueNavGraph
 import com.example.tsenantsika.ui.theme.TsenantsikaTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +15,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TsenantsikaTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                val snackbarState = rememberBoutiqueSnackbarHostState()
+                androidx.compose.material3.Scaffold(snackbarHost = { BoutiqueSnackbarHost(snackbarState) }) {
+                    BoutiqueNavGraph()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TsenantsikaTheme {
-        Greeting("Android")
     }
 }

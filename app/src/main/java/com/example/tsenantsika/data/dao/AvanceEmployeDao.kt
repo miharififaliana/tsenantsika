@@ -15,4 +15,10 @@ interface AvanceEmployeDao {
 
     @Query("SELECT SUM(montant) FROM avances_employe WHERE employeId = :employeId AND journeeId = :journeeId")
     suspend fun getTotalAvancesEmploye(journeeId: Long, employeId: Long): Long?
+
+    @Query("SELECT SUM(montant) FROM avances_employe WHERE journeeId = :journeeId")
+    suspend fun getTotalAvancesJournee(journeeId: Long): Long?
+
+    @Query("SELECT SUM(montant) FROM avances_employe WHERE journeeId = :journeeId")
+    fun observeTotalAvances(journeeId: Long): Flow<Long?>
 }

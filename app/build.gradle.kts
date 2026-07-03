@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -59,6 +60,14 @@ dependencies {
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.cio)
+    implementation(libs.ktor.server.websockets)
+    implementation(libs.ktor.server.content.negotiation)
+    implementation(libs.ktor.server.cors)
+    implementation(libs.ktor.server.call.logging)
+    implementation(libs.ktor.client.websockets)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.json)
+    implementation(libs.kotlinx.serialization.json)
 
     // --- NOUVEAU : Base de données locale (Room) ---
     implementation(libs.room.runtime)
@@ -81,6 +90,12 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.icons)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.koin.compose)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.coroutines.android)
 
     // --- Tests ---
     testImplementation(libs.junit)
@@ -93,6 +108,8 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     testImplementation(kotlin("test"))
+
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
 
     // Coroutines Test
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")

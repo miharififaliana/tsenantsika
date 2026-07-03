@@ -25,7 +25,7 @@ import java.time.Instant
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index("employeId"), Index("journeeId")]
+    indices = [Index("employeId"), Index("journeeId"), Index(value = ["journeeId", "employeId"])]
 )
 data class AvanceEmploye(
     @PrimaryKey(autoGenerate = true)

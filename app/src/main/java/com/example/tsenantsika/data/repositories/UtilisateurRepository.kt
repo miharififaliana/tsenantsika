@@ -20,4 +20,21 @@ class UtilisateurRepository(database: BoutiqueDatabase) : BaseRepository(databas
     }
 
     suspend fun countPatronne(): Int = safeCall { dao.countPatronne() }
+
+    suspend fun getById(id: Long): Utilisateur? = safeCall { dao.getById(id) }
+
+    fun getAllEmployes(): Flow<List<Utilisateur>> = dao.getAllEmployes()
+
+    suspend fun createEmploye(nom: String, pin: String): Long = safeCall {
+        dao.insert(Utilisateur(nom = nom.trim(), codePin = pin, role = Role.EMPLOYE))
+    }
+
+    suspend fun deactivateEmploye(id: Long) = safeCall {
+        dao.getById(id)?.let { dao.update(it.copy(actif = false)) }
+    }
+
+    suspend fun resetPin(id: Long, newPin: String) = safeCall {
+        require(newPin.length == 4 && newPin.all { it.isDigit() })
+        dao.getById(id)?.let { dao.update(it.copy(codePin = newPin)) }
+    }
 }

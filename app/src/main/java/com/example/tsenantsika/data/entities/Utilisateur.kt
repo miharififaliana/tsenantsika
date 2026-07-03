@@ -4,11 +4,8 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.time.Instant
+import kotlinx.serialization.Serializable
 
-/**
- * Entité Utilisateur selon le dictionnaire du CdC.
- * Représente Patronne et Employés.
- */
 @Entity(
     tableName = "utilisateurs",
     indices = [
@@ -17,6 +14,7 @@ import java.time.Instant
         Index(value = ["actif"])
     ]
 )
+@Serializable
 data class Utilisateur(
     @PrimaryKey(autoGenerate = true)
     val idUtilisateur: Long = 0,
@@ -29,5 +27,6 @@ data class Utilisateur(
 
     val actif: Boolean = true,
 
+    @Serializable(with = InstantAsLongSerializer::class)
     val dateCreation: Instant = Instant.now()
 )

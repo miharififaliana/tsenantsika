@@ -5,10 +5,8 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.time.Instant
+import kotlinx.serialization.Serializable
 
-/**
- * Entité Vente principale.
- */
 @Entity(
     tableName = "ventes",
     foreignKeys = [
@@ -28,13 +26,16 @@ import java.time.Instant
     indices = [
         Index(value = ["vendeurId"]),
         Index(value = ["journeeId"]),
-        Index(value = ["dateHeure"])
+        Index(value = ["dateHeure"]),
+        Index(value = ["journeeId", "vendeurId"])
     ]
 )
+@Serializable
 data class Vente(
     @PrimaryKey(autoGenerate = true)
     val idVente: Long = 0,
 
+    @Serializable(with = InstantAsLongSerializer::class)
     val dateHeure: Instant = Instant.now(),
 
     val prixTotalFacture: Long,

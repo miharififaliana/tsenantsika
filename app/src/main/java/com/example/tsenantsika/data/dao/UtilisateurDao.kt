@@ -29,6 +29,12 @@ interface UtilisateurDao {
     @Query("SELECT * FROM utilisateurs WHERE actif = 1")
     fun getAllActifs(): Flow<List<Utilisateur>>
 
+    @Query("SELECT * FROM utilisateurs WHERE actif = 1 AND role = 'EMPLOYE'")
+    suspend fun getEmployesActifsSync(): List<Utilisateur>
+
     @Query("SELECT COUNT(*) FROM utilisateurs WHERE role = 'PATRONNE'")
     suspend fun countPatronne(): Int
+
+    @Query("SELECT * FROM utilisateurs WHERE role = 'EMPLOYE' ORDER BY nom")
+    fun getAllEmployes(): Flow<List<Utilisateur>>
 }

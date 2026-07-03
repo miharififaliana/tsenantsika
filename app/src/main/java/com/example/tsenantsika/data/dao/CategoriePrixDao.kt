@@ -19,6 +19,9 @@ interface CategoriePrixDao {
     @Query("SELECT * FROM categories_prix")
     fun getAll(): Flow<List<CategoriePrix>>
 
+    @Query("SELECT * FROM categories_prix")
+    suspend fun getAllSync(): List<CategoriePrix>
+
     @Query("SELECT * FROM categories_prix WHERE idCategorie = :id")
     suspend fun getById(id: Long): CategoriePrix?
 }

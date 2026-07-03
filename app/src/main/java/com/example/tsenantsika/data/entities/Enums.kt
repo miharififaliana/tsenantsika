@@ -1,12 +1,9 @@
 package com.example.tsenantsika.data.entities
 
 import androidx.room.TypeConverter
+import kotlinx.serialization.Serializable
 
-/**
- * Enum représentant les rôles des utilisateurs selon le Cahier des Charges.
- * PATRONNE : Accès complet (CRUD, administration, gestion des paramètres).
- * EMPLOYE : Accès restreint (consultation de ses propres données uniquement).
- */
+@Serializable
 enum class Role {
     PATRONNE,
     EMPLOYE
@@ -17,6 +14,7 @@ enum class Role {
  * OUVERTE : Permet les saisies (ventes, avances, dépenses).
  * CLOTUREE : Lecture seule, données archivées et immuables (R9).
  */
+@Serializable
 enum class StatutJournee {
     OUVERTE,
     CLOTUREE
@@ -28,6 +26,7 @@ enum class StatutJournee {
  * MODIFIEE : Après modification par la Patronne (avec recalcul).
  * SUPPRIMEE : Après suppression logique avec motif d'audit.
  */
+@Serializable
 enum class StatutVente {
     VALIDEE,
     MODIFIEE,

@@ -3,29 +3,32 @@ package com.example.tsenantsika.di
 import androidx.room.Room
 import com.example.tsenantsika.data.database.BoutiqueDatabase
 import com.example.tsenantsika.data.repositories.*
+import com.example.tsenantsika.network.EventBus
 import org.koin.dsl.module
 
 val dataModule = module {
 
-    // 1. Base de données Room (singleton)
     single {
         Room.databaseBuilder(
-            get(),                    // Context via Koin
+            get(),
             BoutiqueDatabase::class.java,
             BoutiqueDatabase.DATABASE_NAME
         )
-            .fallbackToDestructiveMigration() // Pour le développement (supprime la DB en cas de changement de schéma)
+            .fallbackToDestructiveMigration()
             .build()
     }
 
-    // 2. Repositories (singletons)
+    single { EventBus() }
     single { UtilisateurRepository(get()) }
-    single { JourneeRepository(get()) }
-    single { CategoriePrixRepository(get()) }
-    single { ParametreCommissionRepository(get()) }
-    single { VenteRepository(get()) }
-    single { LigneVenteRepository(get()) }           // À créer si pas encore fait
-    single { AvanceEmployeRepository(get()) }
-    single { DepenseBoutiqueRepository(get()) }
+    single { CategoriePrixRepository(get(), get()) }
+    single { ParametreCommissionRepository(get(), get()) }
+    single { LigneVenteRepository(get()) }
+    single { AvanceEmployeRepository(get(), get()) }
+    single { DepenseBoutiqueRepository(get(), get()) }
     single { AuditLogRepository(get()) }
+    single { AuditRepository(get()) }
+    single { StatsRepository(get()) }
+    single { VenteRepository(get(), get(), get(), get()) }
+    single { JourneeRepository(get(), get(), get()) }
+    single { SyncRepository(get(), get(), get(), get(), get(), get(), get(), get(), get()) }
 }
